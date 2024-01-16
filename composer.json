@@ -27,7 +27,7 @@
     "php": "^8.1",
     "jolicode/elastically": "^1.7",
     "psr/log": "^1.0 || ^2.0 || ^3.0",
-    "ruflin/elastica": "^7.0",
+    "ruflin/elastica": "^7.1",
     "symfony/console": "^5.0 || ^6.0",
     "symfony/framework-bundle": "^5.0 || ^6.0",
     "symfony/messenger": "^5.0 || ^6.0",
