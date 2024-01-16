@@ -1,28 +1,92 @@
-parameters:
-    paths:
-        - ./src/
-    exclude_files:
-        - '#.*tests.*#'
-    layers:
-        -   name: Converter
-            collectors:
-                - type: bool
-                  must:
-                    -   type: implements
-                        value: 'Neusta\ConverterBundle\Converter'
-        -   name: Populator
-            collectors:
-                - type: bool
-                  must:
-                    -   type: implements
-                        value: 'Neusta\ConverterBundle\Populator'
-        -   name: Factory
-            collectors:
-                -   type: implements
-                    value: 'Neusta\ConverterBundle\TargetFactory'
-    ruleset:
-        Populator:
-            - Converter
-        Converter:
-            - Populator
-            - Factory
+deptrac:
+  paths:
+    - ./src
+  exclude_files:
+    - '#.*test.*#'
+  layers:
+    -   name: Converter Bundle
+        collectors:
+          - type: bool
+            must:
+              - type: classNameRegex
+                value: '#Neusta\\ConverterBundle.*#'
+    -   name: Elastica Bundle
+        collectors:
+          - type: bool
+            must_not:
+              -   type: className
+                  value: 'Neusta\\ElasticBundle\\.*'
+            must:
+              - type: classNameRegex
+                value: '#Elastica\\.*#'
+    -   name: Elastically Bundle
+        collectors:
+          - type: bool
+            must:
+              - type: classNameRegex
+                value: '#JoliCode\\Elastically\\.*#'
+    -   name: Logging Framework
+        collectors:
+          - type: bool
+            must:
+              - type: classNameRegex
+                value: '#Psr\\Log\\.*#'
+    -   name: Symfony Framework
+        collectors:
+          - type: bool
+            must:
+              - type: classNameRegex
+                value: '#Symfony\\.*#'
+    -   name: Pimcore Framework
+        collectors:
+          - type: bool
+            must_not:
+              -   type: className
+                  value: 'Neusta\\ElasticBundle\\Pimcore\\Index\\.*'
+            must:
+              - type: classNameRegex
+                value: '#Pimcore\\.*#'
+    -   name: Pimcore Index
+        collectors:
+          - type: bool
+            must:
+              -   type: className
+                  value: 'Neusta\\ElasticBundle\\Pimcore\\Index\\.*'
+    -   name: Pimcore Search
+        collectors:
+          - type: bool
+            must:
+              -   type: className
+                  value: 'Neusta\\ElasticBundle\\Pimcore\\Search\\.*'
+    -   name: Index
+        collectors:
+          - type: bool
+            must:
+              -   type: className
+                  value: 'Neusta\\ElasticBundle\\Index\\.*'
+    -   name: Search
+        collectors:
+          - type: bool
+            must:
+              -   type: className
+                  value: 'Neusta\\ElasticBundle\\Search\\.*'
+  ruleset:
+    Pimcore Index:
+      - Index
+      - Pimcore Framework
+      - Converter Bundle
+      - Logging Framework
+      - Symfony Framework
+    Pimcore Search:
+      - Search
+    Index:
+      - Converter Bundle
+      - Elastica Bundle
+      - Elastically Bundle
+      - Logging Framework
+      - Symfony Framework
+    Search:
+      - Converter Bundle
+      - Elastica Bundle
+      - Elastically Bundle
+
