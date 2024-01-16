@@ -1,0 +1,28 @@
+parameters:
+    paths:
+        - ./src/
+    exclude_files:
+        - '#.*tests.*#'
+    layers:
+        -   name: Converter
+            collectors:
+                - type: bool
+                  must:
+                    -   type: implements
+                        value: 'Neusta\ConverterBundle\Converter'
+        -   name: Populator
+            collectors:
+                - type: bool
+                  must:
+                    -   type: implements
+                        value: 'Neusta\ConverterBundle\Populator'
+        -   name: Factory
+            collectors:
+                -   type: implements
+                    value: 'Neusta\ConverterBundle\TargetFactory'
+    ruleset:
+        Populator:
+            - Converter
+        Converter:
+            - Populator
+            - Factory

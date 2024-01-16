@@ -1,0 +1,11 @@
+services:
+
+  Neusta\ElasticSearchBundle\Search\SearchService:
+    arguments:
+      $preSearchHandlers:
+        - '@Neusta\ElasticSearchBundle\Search\Handler\PreSearch\SearchQuery'
+        - '@Neusta\ElasticSearchBundle\Search\Handler\PreSearch\AddAggregations'
+      $searchHandlers:
+        - '@Neusta\ElasticSearchBundle\Search\Handler\Search\SearchExecution'
+      $postSearchHandlers:
+        - '@Neusta\ElasticSearchBundle\Search\Handler\PostSearch\SearchResults'

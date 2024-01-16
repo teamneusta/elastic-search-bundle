@@ -1,0 +1,14 @@
+# Composer
+/composer.lock
+/vendor/
+
+# PHP-CS-Fixer
+/.php-cs-fixer.cache
+
+# PHPUnit
+/.phpunit.result.cache
+/.phpunit.cache/
+/reports/
+
+# IDE project files
+/.idea/

@@ -1,0 +1,9 @@
+neusta_converter:
+  converter:
+    aggregation.converter:
+      target_factory: Neusta\ElasticSearchBundle\Search\Factory\Elastica\TermsAggregationFactory
+      properties:
+        name: label
+        field: fieldName
+      populators:
+        - Neusta\ElasticSearchBundle\Search\Populator\Elastica\AggregationOrderPopulator

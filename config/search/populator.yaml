@@ -1,0 +1,4 @@
+services:
+
+  Neusta\ElasticSearchBundle\Search\Populator\Elastica\:
+    resource: '../../../src/Search/Populator/Elastica/*'

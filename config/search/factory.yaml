@@ -1,0 +1,4 @@
+services:
+
+  Neusta\ElasticSearchBundle\Search\Factory\:
+    resource: '../../../src/Search/Factory/*'

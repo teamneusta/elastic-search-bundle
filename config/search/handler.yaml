@@ -1,0 +1,9 @@
+services:
+
+  Neusta\ElasticSearchBundle\Search\Handler\:
+    autowire: true
+    resource: '../../../src/Search/Handler/*'
+
+  Neusta\ElasticSearchBundle\Search\Handler\PreSearch\AddAggregations:
+    arguments:
+      $aggregationConverter: '@aggregation.converter'
